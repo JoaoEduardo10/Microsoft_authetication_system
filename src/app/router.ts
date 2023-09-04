@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Router } from "express";
 import passport from "passport";
+import { MicrosoftAuthController } from "./controllers/microsoft-auth";
+import { error } from "console";
 
 const router = Router();
 
@@ -26,15 +29,21 @@ router.get(
   "/auth/microsoft/callback",
   passport.authenticate("microsoft", {
     failureRedirect: "/login",
-  }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect("/v1/auth/microsoft/users");
-  }
+    successRedirect: "/v1/auth/microsoft/users",
+  })
 );
 
-router.get("/auth/microsoft/users", (req, res) => {
-  res.send(req.user);
+router.get("/auth/microsoft/users", async (req, res) => {
+  const controller = new MicrosoftAuthController();
+
+  const { body, statusCode } = await controller.handle(req);
+
+  res.status(statusCode).json({ token: body });
+});
+
+router.get("/logout", (req, res) => {
+  req.logout(error);
+  res.redirect("/");
 });
 
 export { router };
