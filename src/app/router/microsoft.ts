@@ -1,6 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
-import { MicrosoftAuthController } from "../controllers/microsoft-auth";
+import { MicrosoftAuthRouter } from "../usecase/microsoft-auth";
 
 const microsoftRouter = Router();
 
@@ -27,13 +27,9 @@ microsoftRouter.get(
   })
 );
 
-microsoftRouter.get("/auth/microsoft/users", async (req, res) => {
-  const controller = new MicrosoftAuthController();
+const microsoftAuthRouter = new MicrosoftAuthRouter();
 
-  const { body, statusCode } = await controller.handle(req);
-
-  res.status(statusCode).json({ token: body });
-});
+microsoftRouter.get("/auth/microsoft/users", microsoftAuthRouter.logged);
 
 microsoftRouter.get("/logout", (req, res) => {
   req.logout((error) => console.log(error));
