@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { MicrosoftAuthController } from "../controllers/microsoft-auth";
-import { RedisMicrosoftAuthRepository } from "../repositories/microsoft-auth";
+import { RedisMicrosoftAuthRepository } from "../repositories/set-microsoft-auth/set-microsoft-auth";
 
 class MicrosoftAuthRouter {
   async logged(req: Request, res: Response) {

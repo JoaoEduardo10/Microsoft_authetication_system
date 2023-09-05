@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IMicrosoftAuthrepository } from "../repositories/protocols";
+import { IMicrosoftAuthrepository } from "../repositories/set-microsoft-auth/protocols";
 import { ApiRequest, ApiResponse, IController } from "./protocols";
 
 class MicrosoftAuthController implements IController {
