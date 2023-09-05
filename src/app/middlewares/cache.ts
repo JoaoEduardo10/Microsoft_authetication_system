@@ -8,7 +8,6 @@ class CacheMiddleware {
     const id = _json.id;
 
     const user = cache.get(id);
-    console.log(user);
 
     if (user !== "falha") {
       const redirect_url = process.env.URL_REDIRECT_SUCESS || "";
