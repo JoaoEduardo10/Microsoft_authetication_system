@@ -1,38 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { createJwt } from "../helpers/jsonwebtoken";
+import { IMicrosoftAuthrepository } from "../repositories/protocols";
 import { ApiRequest, ApiResponse, IController } from "./protocols";
 
 class MicrosoftAuthController implements IController {
-  private name: string;
-  private email: string;
-  private id: string;
-  private jobs: string;
-
-  constructor() {
-    this.email = "";
-    this.id = "";
-    this.jobs = "";
-    this.name = "";
-  }
+  constructor(
+    private readonly microsoftaAuthrepository: IMicrosoftAuthrepository
+  ) {}
 
   async handle(req: ApiRequest<unknown>): Promise<ApiResponse<string>> {
     const { user } = req;
 
-    this.email = user._json.mail;
-    this.id = user._json.id;
-    this.jobs = user.jobTitle;
-    this.name = user.name.givenName;
-
-    const token = createJwt({
-      email: this.email,
-      id: this.id,
-      name: this.name,
-      jobs: this.jobs,
+    this.microsoftaAuthrepository.set({
+      email: user._json.mail,
+      id: user._json.id,
+      jobTitle: user.jobTitle,
+      name: user.name.givenName,
     });
 
     return {
-      body: token,
-      statusCode: 200,
+      body: user._json.id,
+      statusCode: 308,
     };
   }
 }
