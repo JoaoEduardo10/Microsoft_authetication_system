@@ -6,10 +6,13 @@ import { configurePassport } from "../config/passport-microsoft-";
 import passport from "passport";
 import session from "express-session";
 import { globalsErrors } from "./middlewares/globals-errors";
+import path from "path";
 
 const app = express();
 config();
 configurePassport();
+
+app.use("/public", express.static(path.join(__dirname, "..", "..", "public")));
 
 app.use(express.json());
 

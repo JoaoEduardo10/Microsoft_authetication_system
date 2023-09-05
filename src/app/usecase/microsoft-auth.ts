@@ -5,9 +5,11 @@ class MicrosoftAuthRouter {
   async logged(req: Request, res: Response) {
     const microsoftAuthController = new MicrosoftAuthController();
 
-    const { body, statusCode } = await microsoftAuthController.handle(req);
+    await microsoftAuthController.handle(req);
 
-    res.status(statusCode).json({ token: body });
+    const url_redirect = process.env.URL_REDIRECT_SUCESS || "";
+
+    res.redirect(url_redirect);
   }
 }
 

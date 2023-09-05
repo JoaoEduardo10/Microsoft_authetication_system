@@ -1,6 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import { MicrosoftAuthRouter } from "../usecase/microsoft-auth";
+import { MicrosoftAuthMiddleware } from "../middlewares/microsoft-auth";
 
 const microsoftRouter = Router();
 
@@ -22,18 +23,30 @@ microsoftRouter.get(
 microsoftRouter.get(
   "/auth/microsoft/callback",
   passport.authenticate("microsoft", {
-    failureRedirect: "/login",
+    failureRedirect: "/v1/auth/microsoft/failure",
     successRedirect: "/v1/auth/microsoft/users",
   })
 );
 
 const microsoftAuthRouter = new MicrosoftAuthRouter();
+const microsoftAuthMiddleware = new MicrosoftAuthMiddleware();
 
-microsoftRouter.get("/auth/microsoft/users", microsoftAuthRouter.logged);
+microsoftRouter.get(
+  "/auth/microsoft/users",
+  microsoftAuthMiddleware.middleware,
+  microsoftAuthRouter.logged
+);
+
+microsoftRouter.get("auth/microsoft/failure", (_req, res) => {
+  return res.sendStatus(401);
+});
 
 microsoftRouter.get("/logout", (req, res) => {
-  req.logout((error) => console.log(error));
-  res.redirect("/");
+  req.logout((message) => console.log(message));
+
+  const url_redirect = process.env.URL_REDIRECT_LOGOUT || "/";
+
+  res.redirect(url_redirect);
 });
 
 export { microsoftRouter };
