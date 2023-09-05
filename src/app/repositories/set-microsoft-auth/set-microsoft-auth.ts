@@ -2,7 +2,7 @@ import { cache } from "../../../database/cache";
 import { UserDTO } from "../../interfaceDTO/user";
 import { ICreateMicrosoftAuthrepository } from "./protocols";
 
-class RedisSetMicrosoftAuthRepository
+class CacheLocalCreateMicrosoftAuthRepository
   implements ICreateMicrosoftAuthrepository
 {
   private cache: typeof cache;
@@ -16,4 +16,4 @@ class RedisSetMicrosoftAuthRepository
   }
 }
 
-export { RedisSetMicrosoftAuthRepository };
+export { CacheLocalCreateMicrosoftAuthRepository };
