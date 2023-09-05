@@ -3,14 +3,14 @@ import { UserDTO } from "../interfaceDTO/user";
 import { IMicrosoftAuthrepository } from "./protocols";
 
 class RedisMicrosoftAuthRepository implements IMicrosoftAuthrepository {
-  private redis: typeof cache;
+  private cache: typeof cache;
 
   constructor() {
-    this.redis = cache;
+    this.cache = cache;
   }
 
   async set(user: UserDTO): Promise<void> {
-    await this.redis.set(JSON.stringify(user), user.id);
+    this.cache.set(JSON.stringify(user), user.id);
   }
 }
 
