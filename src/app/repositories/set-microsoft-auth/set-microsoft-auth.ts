@@ -1,17 +1,19 @@
 import { cache } from "../../../database/cache";
 import { UserDTO } from "../../interfaceDTO/user";
-import { IMicrosoftAuthrepository } from "./protocols";
+import { ICreateMicrosoftAuthrepository } from "./protocols";
 
-class RedisMicrosoftAuthRepository implements IMicrosoftAuthrepository {
+class RedisSetMicrosoftAuthRepository
+  implements ICreateMicrosoftAuthrepository
+{
   private cache: typeof cache;
 
   constructor() {
     this.cache = cache;
   }
 
-  async set(user: UserDTO): Promise<void> {
+  async create(user: UserDTO): Promise<void> {
     this.cache.set(JSON.stringify(user), user.id);
   }
 }
 
-export { RedisMicrosoftAuthRepository };
+export { RedisSetMicrosoftAuthRepository };

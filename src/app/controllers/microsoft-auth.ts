@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IMicrosoftAuthrepository } from "../repositories/set-microsoft-auth/protocols";
+import { ICreateMicrosoftAuthrepository } from "../repositories/set-microsoft-auth/protocols";
 import { ApiRequest, ApiResponse, IController } from "./protocols";
 
 class MicrosoftAuthController implements IController {
   constructor(
-    private readonly microsoftaAuthrepository: IMicrosoftAuthrepository
+    private readonly createMicrosoftaAuthrepository: ICreateMicrosoftAuthrepository
   ) {}
 
   async handle(req: ApiRequest<unknown>): Promise<ApiResponse<string>> {
     const { user } = req;
 
-    this.microsoftaAuthrepository.set({
+    this.createMicrosoftaAuthrepository.create({
       email: user._json.mail,
       id: user._json.id,
       jobTitle: user.jobTitle,
