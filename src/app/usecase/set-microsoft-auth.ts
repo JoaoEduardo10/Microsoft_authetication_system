@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { MicrosoftAuthController } from "../controllers/microsoft-auth";
+import { MicrosoftAuthController } from "../controllers/set-microsoft-auth";
 import { CacheLocalCreateMicrosoftAuthRepository } from "../repositories/set-microsoft-auth/set-microsoft-auth";
 
 class MicrosoftAuthRouter {
