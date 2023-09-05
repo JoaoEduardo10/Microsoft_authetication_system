@@ -1,26 +1,16 @@
-import { Redis } from "../../services/redis";
+import { cache } from "../../database/cache";
 import { UserDTO } from "../interfaceDTO/user";
 import { IMicrosoftAuthrepository } from "./protocols";
 
 class RedisMicrosoftAuthRepository implements IMicrosoftAuthrepository {
-  private redis: Redis;
+  private redis: typeof cache;
 
   constructor() {
-    this.redis = new Redis();
+    this.redis = cache;
   }
 
   async set(user: UserDTO): Promise<void> {
-    const { email, id, jobTitle, name } = user;
-
-    await this.redis.set(
-      {
-        email,
-        id,
-        jobTitle,
-        name,
-      },
-      id
-    );
+    await this.redis.set(JSON.stringify(user), user.id);
   }
 }
 
