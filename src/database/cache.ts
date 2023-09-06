@@ -5,7 +5,7 @@ export interface CacheDTO {
 
 class CacheLocal {
   private validateConnect: boolean;
-  private values: string[] = [];
+  private values: CacheDTO[] = [];
 
   constructor() {
     this.validateConnect = false;
@@ -16,42 +16,33 @@ class CacheLocal {
     this.validateConnect = true;
   }
 
-  set(key: string, valueId: string) {
-    const obj = {
+  set(key: string, valueId: string): string {
+    if (!this.validateConnect) {
+      return "falha";
+    }
+
+    if (this.values.some((item) => item.valueId === valueId)) {
+      return "falha";
+    }
+
+    const obj: CacheDTO = {
       key,
       valueId,
     };
 
-    if (this.validateConnect) {
-      const string_values = this.values;
-
-      for (const value of string_values) {
-        const key = JSON.parse(value) as CacheDTO;
-
-        if (string_values.length > 0 && key.valueId === obj.valueId) {
-          return "falha";
-        }
-      }
-
-      this.values.push(JSON.stringify(obj));
-      return "ok";
-    }
-
-    return `falha`;
+    this.values.push(obj);
+    return "ok";
   }
 
-  get(valueId: string) {
-    if (this.validateConnect) {
-      const string_values = this.values;
-
-      for (const value of string_values) {
-        const key = JSON.parse(value) as CacheDTO;
-
-        if (key.valueId === valueId) {
-          return JSON.stringify(key);
-        }
-      }
+  get(valueId: string): string {
+    if (!this.validateConnect) {
       return "falha";
+    }
+
+    const foundItem = this.values.find((item) => item.valueId === valueId);
+
+    if (foundItem) {
+      return JSON.stringify(foundItem);
     }
 
     return "falha";
