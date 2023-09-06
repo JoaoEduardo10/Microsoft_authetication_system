@@ -95,21 +95,21 @@ A API possui 6 rotas no total, sendo 4 delas dinâmicas (por padrao), ou seja, a
 
     2. rota de mediação:
 
-    - **localhost:8000/v1/auth/microsoft/callback**:
-    - Responsável por todo o sistema de autenticação da Microsoft, redirecionando para:
+       - **localhost:8000/v1/auth/microsoft/callback**:
+       - Responsável por todo o sistema de autenticação da Microsoft, redirecionando para:
 
-      2.1. **localhost:8000/v1/auth/microsoft/users**: Redireciona para a URL configurada em `URL_REDIRECT_SUCESS` em caso de login bem-sucedido, ex:
+         2.1. **localhost:8000/v1/auth/microsoft/users**: Redireciona para a URL configurada em `URL_REDIRECT_SUCESS` em caso de login bem-sucedido, ex:
 
-      - Digamos que tenho uma aplicação no front-end em que o usuário so vai poder acessar determinada rota estando autenticado. Quem vai fazer essa logica de autenticação, no lugar do front é o back-end. A sua url base **${Sua url base do front-end}** deve ser adicionada na variavel de ambiente `URL_REDIRECT_SUCESS`.
+       - Digamos que tenho uma aplicação no front-end em que o usuário so vai poder acessar determinada rota estando autenticado. Quem vai fazer essa logica de autenticação, no lugar do front é o back-end. A sua url base **${Sua url base do front-end}** deve ser adicionada na variavel de ambiente `URL_REDIRECT_SUCESS`.
 
-      - O **id** da **${Sua url base do front-end}** vai ser dinamico, sendo ele de acordo com o id do usuário na microsoft. Um exemplo de como ficaria a sua url no front-end: - **localhost:3000/user/auth/423583584657**
+       - O **id** da **${Sua url base do front-end}** vai ser dinamico, sendo ele de acordo com o id do usuário na microsoft. Um exemplo de como ficaria a sua url no front-end: - **localhost:3000/user/auth/423583584657**
 
-      Assim redirecinando o usuário para a rota privada.
+       Assim redirecinando o usuário para a rota privada.
 
-      2.2. **auth/microsoft/failure**: Acionada em caso de falha durante o login. Ex:
+       2.2. **auth/microsoft/failure**: Acionada em caso de falha durante o login. Ex:
 
-      - Quando voçê tenta acessa a rota **localhost:8000/v1/auth/microsoft/users** sem antes passa pea rota **localhost:8000/v1/auth/microsoft**
+       - Quando voçê tenta acessa a rota **localhost:8000/v1/auth/microsoft/users** sem antes passa pea rota **localhost:8000/v1/auth/microsoft**
 
-    3. **localhost:8000/v1/users/:id**Responsável por obter o token de autenticação do usuário.
+    3. **localhost:8000/v1/users/:id**: Responsável por obter o token de autenticação do usuário.
 
-    4 **localhost:8000/v1/logout**: Desloga o usuário.
+    4. **localhost:8000/v1/logout**: Desloga o usuário.
