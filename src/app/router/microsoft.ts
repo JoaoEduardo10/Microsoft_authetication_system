@@ -4,6 +4,7 @@ import { MicrosoftAuthRouter } from "../usecase/set-microsoft-auth";
 import { MicrosoftAuthMiddleware } from "../middlewares/microsoft-auth";
 import { CacheMiddleware } from "../middlewares/cache";
 import { GetMicrosoftAuthRouter } from "../usecase/get-microsoft-auth";
+import { GetMicrosoftAuthMiddleware } from "../middlewares/get-user-with-id";
 
 const microsoftRouter = Router();
 
@@ -46,8 +47,13 @@ microsoftRouter.get("auth/microsoft/failure", (_req, res) => {
 });
 
 const getMicrosoftAuthRouter = new GetMicrosoftAuthRouter();
+const getMicrosoftAuthMiddleware = new GetMicrosoftAuthMiddleware();
 
-microsoftRouter.get("/users/:id", getMicrosoftAuthRouter.get);
+microsoftRouter.get(
+  "/users/:id",
+  getMicrosoftAuthMiddleware.middleware,
+  getMicrosoftAuthRouter.get
+);
 
 microsoftRouter.get("/logout", (req, res) => {
   req.logout((message) => console.log(message));
