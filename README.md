@@ -104,11 +104,11 @@ A API possui 6 rotas no total, sendo 4 delas dinâmicas (por padrao), ou seja, a
 
       - O **id** da **${Sua url base do front-end}** vai ser dinamico, sendo ele de acordo com o id do usuário na microsoft. Um exemplo de como ficaria a sua url no front-end: - **localhost:3000/user/auth/423583584657**
 
-    Assim redirecinando o usuário para a rota privada.
+      Assim redirecinando o usuário para a rota privada.
 
-    2. **auth/microsoft/failure**: Acionada em caso de falha durante o login. Ex:
+      2.2. **auth/microsoft/failure**: Acionada em caso de falha durante o login. Ex:
 
-       - Quando voçê tenta acessa a rota **localhost:8000/v1/auth/microsoft/users** sem antes passa pea rota **localhost:8000/v1/auth/microsoft**
+      - Quando voçê tenta acessa a rota **localhost:8000/v1/auth/microsoft/users** sem antes passa pea rota **localhost:8000/v1/auth/microsoft**
 
     3. **localhost:8000/v1/users/:id**Responsável por obter o token de autenticação do usuário.
 
