@@ -23,6 +23,16 @@ class CacheLocal {
     };
 
     if (this.validateConnect) {
+      const string_values = this.values;
+
+      for (const value of string_values) {
+        const key = JSON.parse(value) as CacheDTO;
+
+        if (string_values.length > 0 && key.valueId === obj.valueId) {
+          return "falha";
+        }
+      }
+
       this.values.push(JSON.stringify(obj));
       return "ok";
     }
@@ -50,4 +60,4 @@ class CacheLocal {
 
 const cache = new CacheLocal();
 
-export { cache };
+export { cache, CacheLocal };
