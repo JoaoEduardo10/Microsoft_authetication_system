@@ -5,6 +5,8 @@ import { MicrosoftAuthMiddleware } from "../middlewares/microsoft-auth";
 import { CacheMiddleware } from "../middlewares/cache";
 import { GetMicrosoftAuthRouter } from "../usecase/get-microsoft-auth";
 import { GetMicrosoftAuthMiddleware } from "../middlewares/get-user-with-id";
+import { GetUserIdsRouter } from "../usecase/get-users-ids";
+import { TokenValidationRouter } from "../usecase/token-validation";
 
 const microsoftRouter = Router();
 
@@ -54,6 +56,14 @@ microsoftRouter.get(
   getMicrosoftAuthMiddleware.middleware,
   getMicrosoftAuthRouter.get
 );
+
+const getUserIdsRouter = new GetUserIdsRouter();
+
+microsoftRouter.get("/users", getUserIdsRouter.get);
+
+const tokenvalidationRouter = new TokenValidationRouter();
+
+microsoftRouter.post("/token/vationlida", tokenvalidationRouter.validate);
 
 microsoftRouter.get("/logout", (req, res) => {
   req.logout((message) => console.log(message));
