@@ -1,6 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
-import { MicrosoftAuthRouter } from "../usecase/microsoft-auth/set-microsoft-auth";
+import { AddUserAuthRouter } from "../usecase/microsoft-auth/add-user-auth";
 import { MicrosoftAuthMiddleware } from "../middlewares/microsoft-auth/microsoft-auth";
 import { CacheMiddleware } from "../middlewares/cache";
 
@@ -29,15 +29,15 @@ microsoftRouter.get(
   })
 );
 
-const microsoftAuthRouter = new MicrosoftAuthRouter();
-const microsoftAuthMiddleware = new MicrosoftAuthMiddleware();
+const addUserAuthRouter = new AddUserAuthRouter();
+const addUserAuthMiddleware = new MicrosoftAuthMiddleware();
 const cacheMiddleware = new CacheMiddleware();
 
 microsoftRouter.get(
   "/auth/microsoft/users",
-  microsoftAuthMiddleware.middleware,
+  addUserAuthMiddleware.middleware,
   cacheMiddleware.middleware,
-  microsoftAuthRouter.logged
+  addUserAuthRouter.logged
 );
 
 microsoftRouter.get("auth/microsoft/failure", (_req, res) => {

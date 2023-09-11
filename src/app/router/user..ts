@@ -1,18 +1,18 @@
 import { Router } from "express";
-import { GetMicrosoftAuthRouter } from "../usecase/microsoft-auth/get-microsoft-auth";
-import { GetMicrosoftAuthMiddleware } from "../middlewares/user/get-user-with-id";
+import { GetUserAuthRouter } from "../usecase/user/user-auth";
+import { GetUserAuthMiddleware } from "../middlewares/user/user-auth";
 import { GetUserIdsRouter } from "../usecase/user/get-users-ids";
 import { UserTokenValidationRouter } from "../usecase/user/user-token-validation";
 
 const userRouter = Router();
 
-const getMicrosoftAuthRouter = new GetMicrosoftAuthRouter();
-const getMicrosoftAuthMiddleware = new GetMicrosoftAuthMiddleware();
+const getUserAuthRouter = new GetUserAuthRouter();
+const getUserAuthMiddleware = new GetUserAuthMiddleware();
 
 userRouter.get(
   "/users/:id",
-  getMicrosoftAuthMiddleware.middleware,
-  getMicrosoftAuthRouter.get
+  getUserAuthMiddleware.middleware,
+  getUserAuthRouter.get
 );
 
 const getUserIdsRouter = new GetUserIdsRouter();

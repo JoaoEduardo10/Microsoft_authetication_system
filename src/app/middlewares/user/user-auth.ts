@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { cache } from "../../../database/cache";
 import { Not_Fould } from "../../errors/api-errors";
 
-class GetMicrosoftAuthMiddleware {
+class GetUserAuthMiddleware {
   middleware(req: Request<{ id: string }>, res: Response, next: NextFunction) {
     const { id } = req.params;
 
@@ -16,4 +16,4 @@ class GetMicrosoftAuthMiddleware {
   }
 }
 
-export { GetMicrosoftAuthMiddleware };
+export { GetUserAuthMiddleware };
