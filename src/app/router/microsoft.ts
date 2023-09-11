@@ -1,6 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
-import { MicrosoftAuthRouter } from "../usecase/set-microsoft-auth";
+import { MicrosoftAuthRouter } from "../usecase/microsoft-auth/set-microsoft-auth";
 import { MicrosoftAuthMiddleware } from "../middlewares/microsoft-auth";
 import { CacheMiddleware } from "../middlewares/cache";
 

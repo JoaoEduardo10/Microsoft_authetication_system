@@ -1,4 +1,4 @@
-import { UserDTO } from "../../interfaceDTO/user";
+import { UserDTO } from "../../../interfaceDTO/user";
 
 export type IGetMicrosoftAuthResponse = {
   key: UserDTO;

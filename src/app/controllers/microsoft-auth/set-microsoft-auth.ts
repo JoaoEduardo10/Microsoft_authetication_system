@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ICreateMicrosoftAuthrepository } from "../repositories/set-microsoft-auth/protocols";
-import { ApiRequest, ApiResponse, IController } from "./protocols";
+import { ICreateMicrosoftAuthrepository } from "../../repositories/micorsoft-auth/set-microsoft-auth/protocols";
+import { ApiRequest, ApiResponse, IController } from "../protocols";
 
 class MicrosoftAuthController implements IController {
   constructor(

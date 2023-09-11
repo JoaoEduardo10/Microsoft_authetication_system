@@ -1,5 +1,5 @@
-import { cache } from "../../../database/cache";
-import { formtJsonParse } from "../../helpers/fomatJsonParse";
+import { cache } from "../../../../database/cache";
+import { formtJsonParse } from "../../../helpers/fomatJsonParse";
 import {
   IGetMicrosoftAuthRepositoty,
   IGetMicrosoftAuthResponse,

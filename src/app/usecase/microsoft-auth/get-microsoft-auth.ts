@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { CacheLocalGetMicrosoftAuthrepository } from "../repositories/get-microsoft-auth/get-microsoft-auth";
-import { GetMicrosoftAuthController } from "../controllers/get-microsoft-auth";
+import { CacheLocalGetMicrosoftAuthrepository } from "../../repositories/micorsoft-auth/get-microsoft-auth/get-microsoft-auth";
+import { GetMicrosoftAuthController } from "../../controllers/microsoft-auth/get-microsoft-auth";
 
 class GetMicrosoftAuthRouter {
   async get(req: Request, res: Response) {

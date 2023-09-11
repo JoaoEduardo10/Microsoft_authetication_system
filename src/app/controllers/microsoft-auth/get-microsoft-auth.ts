@@ -1,6 +1,6 @@
-import { createJwt } from "../helpers/jsonwebtoken";
-import { IGetMicrosoftAuthRepositoty } from "../repositories/get-microsoft-auth/protocols";
-import { ApiRequest, ApiResponse, IController } from "./protocols";
+import { createJwt } from "../../helpers/jsonwebtoken";
+import { IGetMicrosoftAuthRepositoty } from "../../repositories/micorsoft-auth/get-microsoft-auth/protocols";
+import { ApiRequest, ApiResponse, IController } from "../protocols";
 
 class GetMicrosoftAuthController implements IController {
   constructor(

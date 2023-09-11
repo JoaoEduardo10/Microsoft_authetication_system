@@ -1,5 +1,5 @@
-import { cache } from "../../../database/cache";
-import { UserDTO } from "../../interfaceDTO/user";
+import { cache } from "../../../../database/cache";
+import { UserDTO } from "../../../interfaceDTO/user";
 import { ICreateMicrosoftAuthrepository } from "./protocols";
 
 class CacheLocalCreateMicrosoftAuthRepository

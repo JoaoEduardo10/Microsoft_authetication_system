@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { GetMicrosoftAuthRouter } from "../usecase/get-microsoft-auth";
+import { GetMicrosoftAuthRouter } from "../usecase/microsoft-auth/get-microsoft-auth";
 import { GetMicrosoftAuthMiddleware } from "../middlewares/get-user-with-id";
 import { GetUserIdsRouter } from "../usecase/get-users-ids";
 import { TokenValidationRouter } from "../usecase/token-validation";
