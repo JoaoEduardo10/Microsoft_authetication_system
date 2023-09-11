@@ -2,9 +2,11 @@
 import { connection } from "../../../../database/mysql";
 import { Internal_Server_Error } from "../../../errors/api-errors";
 import { UserMysqlDTO } from "../../../interfaceDTO/user";
-import { ITokenValidationrepository } from "./protocols";
+import { IUserTokenValidationrepository } from "./protocols";
 
-export class TokenValidationRepositor implements ITokenValidationrepository {
+export class UserTokenValidationRepositor
+  implements IUserTokenValidationrepository
+{
   async get(email: string): Promise<UserMysqlDTO> {
     const [queryResponse] = (await (
       await connection

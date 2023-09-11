@@ -1,15 +1,17 @@
 import { Request, Response } from "express";
-import { TokenValidationController } from "../../controllers/user/user-token-validatio";
-import { TokenValidationRepositor } from "../../repositories/user/user-token-validantion/user-token-validation";
+import { UserTokenValidationController } from "../../controllers/user/user-token-validatio";
+import { UserTokenValidationRepositor } from "../../repositories/user/user-token-validantion/user-token-validation";
 
-export class TokenValidationRouter {
+export class UserTokenValidationRouter {
   async validate(req: Request, res: Response) {
-    const tokenValidationrepository = new TokenValidationRepositor();
-    const tokenValidationController = new TokenValidationController(
-      tokenValidationrepository
+    const userTokenValidationRepository = new UserTokenValidationRepositor();
+    const userTokenValidationController = new UserTokenValidationController(
+      userTokenValidationRepository
     );
 
-    const { body, statusCode } = await tokenValidationController.handle(req);
+    const { body, statusCode } = await userTokenValidationController.handle(
+      req
+    );
 
     res.status(statusCode).json({ user: body });
   }
