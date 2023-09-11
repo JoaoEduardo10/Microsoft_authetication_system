@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IGetUserIdsRepository } from "../../repositories/get-users-id/protocols";
+import { IGetUserIdsRepository } from "../../repositories/user/get-users-id/protocols";
 import { ApiRequest, ApiResponse, IController } from "../protocols";
 
 export class GetUserIdsController implements IController {

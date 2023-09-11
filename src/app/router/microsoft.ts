@@ -1,7 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import { MicrosoftAuthRouter } from "../usecase/microsoft-auth/set-microsoft-auth";
-import { MicrosoftAuthMiddleware } from "../middlewares/microsoft-auth";
+import { MicrosoftAuthMiddleware } from "../middlewares/microsoft-auth/microsoft-auth";
 import { CacheMiddleware } from "../middlewares/cache";
 
 const microsoftRouter = Router();

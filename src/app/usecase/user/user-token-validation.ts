@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { TokenValidationController } from "../controllers/token-validation/token-validatio";
-import { TokenValidationRepositor } from "../repositories/token-validantion/token-validation";
+import { TokenValidationController } from "../../controllers/user/user-token-validatio";
+import { TokenValidationRepositor } from "../../repositories/user/user-token-validantion/user-token-validation";
 
 export class TokenValidationRouter {
   async validate(req: Request, res: Response) {

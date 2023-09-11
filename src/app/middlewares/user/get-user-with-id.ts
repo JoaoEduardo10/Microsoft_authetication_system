@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { cache } from "../../database/cache";
-import { Not_Fould } from "../errors/api-errors";
+import { cache } from "../../../database/cache";
+import { Not_Fould } from "../../errors/api-errors";
 
 class GetMicrosoftAuthMiddleware {
   middleware(req: Request<{ id: string }>, res: Response, next: NextFunction) {

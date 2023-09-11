@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { connection } from "../../../database/mysql";
-import { Internal_Server_Error } from "../../errors/api-errors";
-import { UserMysqlDTO } from "../../interfaceDTO/user";
+import { connection } from "../../../../database/mysql";
+import { Internal_Server_Error } from "../../../errors/api-errors";
+import { UserMysqlDTO } from "../../../interfaceDTO/user";
 import { ITokenValidationrepository } from "./protocols";
 
 export class TokenValidationRepositor implements ITokenValidationrepository {

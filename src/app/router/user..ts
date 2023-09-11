@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { GetMicrosoftAuthRouter } from "../usecase/microsoft-auth/get-microsoft-auth";
-import { GetMicrosoftAuthMiddleware } from "../middlewares/get-user-with-id";
-import { GetUserIdsRouter } from "../usecase/get-users-ids";
-import { TokenValidationRouter } from "../usecase/token-validation";
+import { GetMicrosoftAuthMiddleware } from "../middlewares/user/get-user-with-id";
+import { GetUserIdsRouter } from "../usecase/user/get-users-ids";
+import { TokenValidationRouter } from "../usecase/user/user-token-validation";
 
 const userRouter = Router();
 
@@ -21,6 +21,6 @@ userRouter.get("/users", getUserIdsRouter.get);
 
 const tokenvalidationRouter = new TokenValidationRouter();
 
-userRouter.post("/token/validation", tokenvalidationRouter.validate);
+userRouter.post("/user/token/validation", tokenvalidationRouter.validate);
 
 export { userRouter };

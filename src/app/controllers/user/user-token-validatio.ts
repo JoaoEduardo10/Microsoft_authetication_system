@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { compareJwt } from "../../helpers/jsonwebtoken";
-import { ITokenValidationrepository } from "../../repositories/token-validantion/protocols";
+import { ITokenValidationrepository } from "../../repositories/user/user-token-validantion/protocols";
 import { ApiRequest, ApiResponse, IController } from "../protocols";
 
 export class TokenValidationController implements IController {

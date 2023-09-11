@@ -1,5 +1,5 @@
-import { cache } from "../../../database/cache";
-import { Internal_Server_Error } from "../../errors/api-errors";
+import { cache } from "../../../../database/cache";
+import { Internal_Server_Error } from "../../../errors/api-errors";
 import { IGetUserIdsRepository } from "./protocols";
 
 export class CacheLocalGetUserIdsRepository implements IGetUserIdsRepository {
