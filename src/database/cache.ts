@@ -1,4 +1,4 @@
-export interface CacheDTO {
+interface CacheDTO {
   key: string;
   valueId: string;
 }
@@ -47,8 +47,16 @@ class CacheLocal {
 
     return "falha";
   }
+
+  findMany() {
+    if (!this.validateConnect) {
+      return "falha";
+    }
+
+    return this.values;
+  }
 }
 
 const cache = new CacheLocal();
 
-export { cache, CacheLocal };
+export { cache, CacheLocal, CacheDTO };
