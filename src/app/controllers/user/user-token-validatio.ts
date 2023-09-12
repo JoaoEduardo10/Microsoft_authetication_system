@@ -8,14 +8,14 @@ export class UserTokenValidationController implements IController {
     private readonly userTokenValidationRepository: IUserTokenValidationrepository
   ) {}
 
-  async handle(req: ApiRequest<{ token: string }>): Promise<ApiResponse<any>> {
-    const { token } = req.body!;
+  async handle(req: ApiRequest<unknown>): Promise<ApiResponse<any>> {
+    const token = req.headers.token as string;
 
     const isToken = compareJwt(token);
     const user = await this.userTokenValidationRepository.get(isToken.email);
 
     return {
-      body: { ...isToken, typeGroup: user.grupo },
+      body: { ...isToken, typeGroup: user.typeGroup },
       statusCode: 200,
     };
   }
