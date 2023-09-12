@@ -11,3 +11,17 @@ export interface UserMysqlDTO {
   email: string;
   grupo: string;
 }
+
+export interface UserMongoDTO {
+  id: string;
+  email: string;
+  name: string;
+  typeGroup:
+    | "ADM"
+    | "tecnico"
+    | "atendimento"
+    | "vendas_ativo"
+    | "vendas_passivo"
+    | "estoque"
+    | "financeiro";
+}
