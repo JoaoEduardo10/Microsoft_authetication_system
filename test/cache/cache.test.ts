@@ -23,6 +23,38 @@ describe("CacheLocal", () => {
     expect(response).toBe("ok");
   });
 
+  it("should get all user in cache memory", () => {
+    const memoryCache = new CacheLocal();
+
+    const key = JSON.stringify({
+      id: "1234",
+      name: "test",
+      email: "test@gmail.com",
+      jobTitle: "programador",
+    });
+
+    const user: CacheDTO = {
+      key,
+      valueId: "1234",
+    };
+
+    memoryCache.connect();
+
+    memoryCache.set(JSON.stringify(user), "1234");
+
+    const response = memoryCache.findMany();
+
+    expect(response.length).toBe(1);
+  });
+
+  it("should not catch all users for not being logged in", () => {
+    const memoryCache = new CacheLocal();
+
+    const response = memoryCache.findMany();
+
+    expect(response).toBe("falha");
+  });
+
   it("should return an error by tries to add a user already adding to memory", () => {
     const memoryCache = new CacheLocal();
 
