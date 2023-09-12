@@ -1,5 +1,5 @@
-import { UserMysqlDTO } from "../../../interfaceDTO/user";
+import { UserMongoDTO } from "../../../interfaceDTO/user";
 
 export interface IUserTokenValidationrepository {
-  get(email: string): Promise<UserMysqlDTO>;
+  get(email: string): Promise<UserMongoDTO>;
 }
