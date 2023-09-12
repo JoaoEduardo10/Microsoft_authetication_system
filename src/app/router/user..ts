@@ -3,6 +3,7 @@ import { GetUserAuthRouter } from "../usecase/user/user-auth";
 import { GetUserAuthMiddleware } from "../middlewares/user/user-auth";
 import { GetUserIdsRouter } from "../usecase/user/get-users-ids";
 import { UserTokenValidationRouter } from "../usecase/user/user-token-validation";
+import { authenticationMiddleware } from "../middlewares/authentication";
 
 const userRouter = Router();
 
@@ -21,6 +22,10 @@ userRouter.get("/users", getUserIdsRouter.get);
 
 const userTokenValidationRouter = new UserTokenValidationRouter();
 
-userRouter.post("/user/token/validation", userTokenValidationRouter.validate);
+userRouter.post(
+  "/user/token/validation",
+  authenticationMiddleware,
+  userTokenValidationRouter.validate
+);
 
 export { userRouter };
