@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { RequestHandler } from "express";
 import { Unauthorezid } from "../errors/api-errors";
-import { compareJwt } from "../helpers/jsonwebtoken";
+import { Ijwt, IjwtComplete, compareJwt } from "../helpers/jsonwebtoken";
 
 export const authenticationMiddleware: RequestHandler = async (
   req,
@@ -13,15 +14,26 @@ export const authenticationMiddleware: RequestHandler = async (
     throw new Unauthorezid("Voçê não esta altenticado.!");
   }
 
-  const [type, token] = authorization.split(" ");
+  const [type, token_auth] = authorization.split(" ");
 
-  if (type != "Interativabr") {
+  const authorization_type = process.env.TYPE_AUTHORIZATION;
+
+  if (type != authorization_type) {
     throw new Unauthorezid("Tipo de token invalido!");
   }
 
-  compareJwt(token);
+  try {
+    const token = compareJwt(token_auth);
 
-  req.headers.token = token as string;
+    if (token == undefined) {
+      throw new Error("Não autorizado");
+    }
 
-  next();
+    req.headers.email = token.email as string;
+    req.body.token = token as Ijwt & IjwtComplete;
+
+    next();
+  } catch (error: any) {
+    throw new Unauthorezid(error.message);
+  }
 };

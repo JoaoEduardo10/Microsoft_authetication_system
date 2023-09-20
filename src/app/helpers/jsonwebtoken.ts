@@ -18,14 +18,20 @@ export const createJwt = (data: Ijwt) => {
   return jwt.sign(data, jwtHash, { expiresIn: "3h" });
 };
 
-export const compareJwt = (token: string): Ijwt & IjwtComplete => {
+export const compareJwt = (
+  token: string
+): (Ijwt & IjwtComplete) | undefined => {
   const jwtHash = process.env.HASH_JWT as string;
 
-  const varifyToken = jwt.verify(token, jwtHash);
+  try {
+    const varifyToken = jwt.verify(token, jwtHash);
 
-  if (typeof varifyToken === "string") {
-    throw new Error("Token invalido");
+    if (typeof varifyToken === "string") {
+      throw new Error("não autorizado");
+    }
+
+    return varifyToken as Ijwt & IjwtComplete;
+  } catch (error) {
+    if (error) return undefined;
   }
-
-  return varifyToken as Ijwt & IjwtComplete;
 };

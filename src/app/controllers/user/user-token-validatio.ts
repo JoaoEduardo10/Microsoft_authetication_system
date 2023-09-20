@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { compareJwt } from "../../helpers/jsonwebtoken";
+import { Ijwt, IjwtComplete } from "../../helpers/jsonwebtoken";
 import { IUserTokenValidationrepository } from "../../repositories/user/user-token-validantion/protocols";
 import { ApiRequest, ApiResponse, IController } from "../protocols";
 
@@ -8,14 +8,16 @@ export class UserTokenValidationController implements IController {
     private readonly userTokenValidationRepository: IUserTokenValidationrepository
   ) {}
 
-  async handle(req: ApiRequest<unknown>): Promise<ApiResponse<any>> {
-    const token = req.headers.token as string;
+  async handle(
+    req: ApiRequest<{ token: Ijwt & IjwtComplete }>
+  ): Promise<ApiResponse<any>> {
+    const email = req.headers.email! as string;
+    const token = req.body!.token;
 
-    const isToken = compareJwt(token);
-    const user = await this.userTokenValidationRepository.get(isToken.email);
+    const user = await this.userTokenValidationRepository.get(email);
 
     return {
-      body: { ...isToken, typeGroup: user.typeGroup },
+      body: { token, ...user },
       statusCode: 200,
     };
   }
