@@ -55,6 +55,23 @@ class CacheLocal {
 
     return this.values;
   }
+
+  delete(valueId: string): string {
+    if (!this.validateConnect) {
+      return "falha";
+    }
+
+    const foundIndex = this.values.findIndex(
+      (item) => item.valueId === valueId
+    );
+
+    if (foundIndex !== -1) {
+      this.values.splice(foundIndex, 1);
+      return "ok";
+    }
+
+    return "falha";
+  }
 }
 
 const cache = new CacheLocal();

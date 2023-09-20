@@ -3,6 +3,7 @@ import passport from "passport";
 import { AddUserAuthRouter } from "../usecase/microsoft-auth/add-user-auth";
 import { MicrosoftAuthMiddleware } from "../middlewares/microsoft-auth/microsoft-auth";
 import { CacheMiddleware } from "../middlewares/cache";
+import { cache } from "../../database/cache";
 
 const microsoftRouter = Router();
 
@@ -44,8 +45,10 @@ microsoftRouter.get("auth/microsoft/failure", (_req, res) => {
   return res.sendStatus(401);
 });
 
-microsoftRouter.get("/logout", (req, res) => {
+microsoftRouter.get("/logout/:id", (req, res) => {
   req.logout((message) => console.log(message));
+  const { id } = req.params;
+  cache.delete(id);
 
   const url_redirect = process.env.URL_REDIRECT_LOGOUT || "/";
 
