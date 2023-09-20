@@ -153,6 +153,86 @@ describe("CacheLocal", () => {
     expect(response).toBe("falha");
   });
 
+  it("should delete the usery", () => {
+    const memoryCache = new CacheLocal();
+
+    memoryCache.connect();
+
+    const key = JSON.stringify({
+      id: "12345",
+      name: "test",
+      email: "test@gmail.com",
+      jobTitle: "programador",
+    });
+
+    const user: CacheDTO = {
+      key: key,
+      valueId: "12345",
+    };
+
+    memoryCache.set(JSON.stringify(user), user.valueId);
+
+    const response = memoryCache.get(user.valueId);
+
+    expect(response).toBeTruthy();
+
+    memoryCache.delete(user.valueId);
+
+    const responseTwo = memoryCache.get(user.valueId);
+
+    expect(responseTwo).toBe("falha");
+  });
+
+  it("this should not delete the user for not being logged in", () => {
+    const memoryCache = new CacheLocal();
+
+    const key = JSON.stringify({
+      id: "12345",
+      name: "test",
+      email: "test@gmail.com",
+      jobTitle: "programador",
+    });
+
+    const user: CacheDTO = {
+      key: key,
+      valueId: "12345",
+    };
+
+    memoryCache.delete(user.valueId);
+
+    const responseTwo = memoryCache.get(user.valueId);
+
+    expect(responseTwo).toBe("falha");
+  });
+
+  it("should delete the usery", () => {
+    const memoryCache = new CacheLocal();
+
+    memoryCache.connect();
+
+    const key = JSON.stringify({
+      id: "12345",
+      name: "test",
+      email: "test@gmail.com",
+      jobTitle: "programador",
+    });
+
+    const user: CacheDTO = {
+      key: key,
+      valueId: "12345",
+    };
+
+    memoryCache.set(JSON.stringify(user), user.valueId);
+
+    const response = memoryCache.get(user.valueId);
+
+    expect(response).toBeTruthy();
+
+    const responseTwo = memoryCache.delete("123");
+
+    expect(responseTwo).toBe("falha");
+  });
+
   it("should return an error by testing a user searches the Memorya cache without this connected", () => {
     const memoryCache = new CacheLocal();
 
