@@ -7,12 +7,15 @@ import passport from "passport";
 import session from "express-session";
 import { globalsErrors } from "./middlewares/globals-errors";
 import path from "path";
+import cors from "cors";
 
 const app = express();
 config();
 configurePassport();
 
 app.use("/public", express.static(path.join(__dirname, "..", "..", "public")));
+
+app.use(cors());
 
 app.use(express.json());
 
