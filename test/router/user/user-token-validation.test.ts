@@ -1,6 +1,6 @@
-import { createJwt } from "../../src/app/helpers/jsonwebtoken";
-import { User } from "../../src/app/models/User";
-import { serverTest } from "../jest.setup";
+import { createJwt } from "../../../src/app/helpers/jsonwebtoken";
+import { User } from "../../../src/app/models/User";
+import { serverTest } from "../../jest.setup";
 
 describe("user", () => {
   const user = {
