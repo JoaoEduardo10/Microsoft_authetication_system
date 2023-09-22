@@ -41,25 +41,7 @@ export class CreateUserPermissionMiddleware {
     const user = await User.findOne({ email });
 
     if (user) {
-      if (user.typeGroup === "atendimento") {
-        throw new Bad_Request("Já existe alguem com essa permição");
-      }
-
-      if (user.typeGroup === "estoque") {
-        throw new Bad_Request("Já existe alguem com essa permição");
-      }
-
-      if (user.typeGroup === "financeiro") {
-        throw new Bad_Request("Já existe alguem com essa permição");
-      }
-
-      if (user.typeGroup === "tecnico") {
-        throw new Bad_Request("Já existe alguem com essa permição");
-      }
-
-      if (user.email === email && user.typeGroup == typeGroup) {
-        throw new Bad_Request("este usuário já tem essa permição");
-      }
+      throw new Bad_Request("este usuário já tem uma permição");
     }
 
     next();

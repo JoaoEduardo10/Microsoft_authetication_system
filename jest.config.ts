@@ -25,7 +25,7 @@ const config: Config = {
   collectCoverageFrom: [
     "./src/database/cache.ts",
     "./src/mock/*.ts",
-    "./src/app/middlewares/auth*.ts",
+    "./src/app/middlewares/**/*.ts",
     "./src/app/Router/user*.ts",
     "./src/app/controllers/user*/*.ts",
     "./src/app/repositories/user*/**/*.ts",
@@ -35,7 +35,13 @@ const config: Config = {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ["node_modules", "protocols.ts"],
+  coveragePathIgnorePatterns: [
+    "node_modules",
+    "protocols.ts",
+    "microsoft-auth.ts",
+    "cache.ts",
+    "user-auth.ts",
+  ],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",

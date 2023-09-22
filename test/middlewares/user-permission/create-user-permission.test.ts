@@ -1,0 +1,68 @@
+import { User } from "../../../src/app/models/User";
+import { serverTest } from "../../jest.setup";
+
+describe("create-user-permission", () => {
+  beforeEach(async () => {
+    await User.create({
+      email: "test1@gmail.com",
+      name: "test1",
+      typeGroup: "atendimento",
+    });
+  });
+
+  it("should retona an error po does not adding the email to the body", async () => {
+    const { body, statusCode } = await serverTest.post("/users/permissions");
+
+    expect(statusCode).toBe(400);
+    expect(body).toEqual({ error: "adicione o email" });
+  });
+
+  it("should retona an error po does not adding the name to the body", async () => {
+    const { body, statusCode } = await serverTest
+      .post("/users/permissions")
+      .send({
+        email: "test1@gmail.com",
+      });
+
+    expect(statusCode).toBe(400);
+    expect(body).toEqual({ error: "adicione o nome" });
+  });
+
+  it("should retona an error po does not adding the name to the body", async () => {
+    const { body, statusCode } = await serverTest
+      .post("/users/permissions")
+      .send({
+        email: "test1@gmail.com",
+        name: "test",
+      });
+
+    expect(statusCode).toBe(400);
+    expect(body).toEqual({ error: "adicione o tipo do grupo" });
+  });
+
+  it("this should return an error for not adding an invalid typeGroup to the body", async () => {
+    const { body, statusCode } = await serverTest
+      .post("/users/permissions")
+      .send({
+        email: "test1@gmail.com",
+        name: "test",
+        typeGroup: "testgroup",
+      });
+
+    expect(statusCode).toBe(400);
+    expect(body).toEqual({ error: "tipo de grupo invalido" });
+  });
+
+  it("should return an error by by creating a permission to a user who already has it", async () => {
+    const { body, statusCode } = await serverTest
+      .post("/users/permissions")
+      .send({
+        email: "test1@gmail.com",
+        name: "test",
+        typeGroup: "atendimento",
+      });
+
+    expect(statusCode).toBe(400);
+    expect(body).toEqual({ error: "este usuário já tem uma permição" });
+  });
+});
