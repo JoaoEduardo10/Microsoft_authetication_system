@@ -41,6 +41,7 @@ const config: Config = {
     "microsoft-auth.ts",
     "cache.ts",
     "user-auth.ts",
+    "globals-errors.ts",
   ],
 
   // Indicates which provider should be used to instrument code for coverage

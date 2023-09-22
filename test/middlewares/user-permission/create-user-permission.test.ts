@@ -1,17 +1,39 @@
+import { createJwt } from "../../../src/app/helpers/jsonwebtoken";
 import { User } from "../../../src/app/models/User";
 import { serverTest } from "../../jest.setup";
 
 describe("create-user-permission", () => {
+  const user = {
+    token: "",
+    type: "",
+  };
+
+  user.type = process.env.TYPE_AUTHORIZATION || "";
+  user.token = createJwt({
+    email: "test@gmail.com",
+    id: "1234",
+    jobs: "TI",
+    name: "test",
+  });
+
   beforeEach(async () => {
     await User.create({
       email: "test1@gmail.com",
       name: "test1",
       typeGroup: "atendimento",
     });
+
+    await User.create({
+      email: "test@gmail.com",
+      typeGroup: "ADM",
+      name: "test",
+    });
   });
 
   it("should retona an error po does not adding the email to the body", async () => {
-    const { body, statusCode } = await serverTest.post("/users/permissions");
+    const { body, statusCode } = await serverTest
+      .post("/users/permissions")
+      .set("authorization", `${user.type} ${user.token}`);
 
     expect(statusCode).toBe(400);
     expect(body).toEqual({ error: "adicione o email" });
@@ -20,6 +42,7 @@ describe("create-user-permission", () => {
   it("should retona an error po does not adding the name to the body", async () => {
     const { body, statusCode } = await serverTest
       .post("/users/permissions")
+      .set("authorization", `${user.type} ${user.token}`)
       .send({
         email: "test1@gmail.com",
       });
@@ -31,6 +54,7 @@ describe("create-user-permission", () => {
   it("should retona an error po does not adding the name to the body", async () => {
     const { body, statusCode } = await serverTest
       .post("/users/permissions")
+      .set("authorization", `${user.type} ${user.token}`)
       .send({
         email: "test1@gmail.com",
         name: "test",
@@ -43,6 +67,7 @@ describe("create-user-permission", () => {
   it("this should return an error for not adding an invalid typeGroup to the body", async () => {
     const { body, statusCode } = await serverTest
       .post("/users/permissions")
+      .set("authorization", `${user.type} ${user.token}`)
       .send({
         email: "test1@gmail.com",
         name: "test",
@@ -56,6 +81,7 @@ describe("create-user-permission", () => {
   it("should return an error by by creating a permission to a user who already has it", async () => {
     const { body, statusCode } = await serverTest
       .post("/users/permissions")
+      .set("authorization", `${user.type} ${user.token}`)
       .send({
         email: "test1@gmail.com",
         name: "test",
