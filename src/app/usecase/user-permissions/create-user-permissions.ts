@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { MongoCreateUserPermissionRepository } from "../../repositories/user-permissions/create-user-permissions";
+import { MongoCreateUserPermissionRepository } from "../../repositories/user-permissions/create-user-permissions/create-user-permissions";
 import { CreateUserPermissionController } from "../../controllers/user-permissions/create-user-permission";
 
 export class CreateUserPermissionRouter {

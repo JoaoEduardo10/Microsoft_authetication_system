@@ -1,4 +1,4 @@
-import { UserMongoDTO } from "../../interfaceDTO/user";
+import { UserMongoDTO } from "../../../interfaceDTO/user";
 
 export type ICreateUserPemissionDTO = Omit<UserMongoDTO, "id">;
 

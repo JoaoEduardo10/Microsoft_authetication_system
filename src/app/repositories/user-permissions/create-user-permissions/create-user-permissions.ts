@@ -1,5 +1,5 @@
-import { UserMongoDTO } from "../../interfaceDTO/user";
-import { User } from "../../models/User";
+import { UserMongoDTO } from "../../../interfaceDTO/user";
+import { User } from "../../../models/User";
 import {
   ICreateUserPemissionDTO,
   ICreateUserPemissionRepository,

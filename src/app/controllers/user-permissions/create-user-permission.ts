@@ -1,5 +1,5 @@
 import { UserMongoDTO } from "../../interfaceDTO/user";
-import { ICreateUserPemissionRepository } from "../../repositories/user-permissions/protocols";
+import { ICreateUserPemissionRepository } from "../../repositories/user-permissions/create-user-permissions/protocols";
 import { ApiRequest, ApiResponse, IController } from "../protocols";
 
 export class CreateUserPermissionController implements IController {
