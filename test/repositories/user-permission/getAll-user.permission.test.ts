@@ -10,7 +10,7 @@ describe("get-user-permission", () => {
     });
 
     await User.create({
-      email: "test1@gmail.com",
+      email: "test2@gmail.com",
       name: "test2",
       typeGroup: "ADM",
     });
