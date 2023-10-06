@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Router } from "express";
-import { microsoftRouter } from "./Router/microsoft";
-import { userRouter } from "./Router/user";
-import { userPermissionsRouter } from "./Router/user-permission";
+import { microsoftRouter } from "./endpoints/microsoft";
+import { userRouter } from "./endpoints/user";
+import { userPermissionsRouter } from "./endpoints/user-permission";
 
 const router = Router();
 
