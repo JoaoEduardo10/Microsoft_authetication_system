@@ -2,7 +2,7 @@ import "express-async-errors";
 import express from "express";
 import { config } from "dotenv";
 import { globalsErrors } from "../../src/app/middlewares/globals-errors";
-import { userRouter } from "../../src/app/Router/user.";
+import { userRouter } from "../../src/app/Router/user";
 import { userPermissionsRouter } from "../app/Router/user-permission";
 
 const server = express();
