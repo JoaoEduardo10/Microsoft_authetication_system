@@ -189,7 +189,7 @@ const config: Config = {
             tsx: false,
             decorators: true,
           },
-          target: "es2017",
+          target: "es2019",
           keepClassNames: true,
           transform: {
             legacyDecorator: true,

@@ -21,11 +21,13 @@ app.use(express.json());
 
 app.use(
   session({
+    resave: true,
     secret: process.env.SESSION_SECRET as string,
     saveUninitialized: true,
     cookie: {
       secure: true,
     },
+    name: "Microsoft",
   })
 );
 app.use(passport.initialize());
