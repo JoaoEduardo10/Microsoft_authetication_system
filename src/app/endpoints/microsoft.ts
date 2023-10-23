@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Router } from "express";
 import passport from "passport";
 import { AddUserAuthRouter } from "../usecase/microsoft-auth/add-user-auth";
@@ -46,7 +47,7 @@ microsoftRouter.get("auth/microsoft/failure", (_req, res) => {
 });
 
 microsoftRouter.get("/logout/:id", (req, res) => {
-  req.logout((message) => console.log(message));
+  req.logout((message: any) => console.log(message));
   const { id } = req.params;
   cache.delete(id);
 
