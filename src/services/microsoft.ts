@@ -18,6 +18,7 @@ class MicrosoftAuthentication {
           clientID: process.env.CLIENT_ID || "",
           clientSecret: process.env.CLIENT_SECRET || "",
           callbackURL: process.env.CALLBACK_URL || "",
+          tenant: process.env.TENANT_ID || "",
         },
         (accessToken: any, refreshToken: any, profile: any, done: any) => {
           return done(null, profile);

@@ -8,6 +8,7 @@ import session from "express-session";
 import { globalsErrors } from "./middlewares/globals-errors";
 import path from "path";
 import cors from "cors";
+import { User } from "./models/User";
 
 const app = express();
 config();
@@ -18,6 +19,8 @@ app.use("/public", express.static(path.join(__dirname, "..", "..", "public")));
 app.use(cors());
 
 app.use(express.json());
+
+User.deleteMany();
 
 app.use(
   session({

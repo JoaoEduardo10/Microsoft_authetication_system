@@ -1,6 +1,6 @@
 {
   "name": "microsoft_authentication_system",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "autenticação com microsoft",
   "main": "index.js",
   "scripts": {

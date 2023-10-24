@@ -16,7 +16,13 @@ microsoftRouter.get(
   passport.authenticate("microsoft", {
     // Optionally define any authentication parameters here
     // For example, the ones in https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
-    scope: ["User.Read"],
+    scope: [
+      "User.Read",
+      "APIConnectors.Read.All",
+      "APIConnectors.ReadWrite.All",
+      "openid",
+    ],
+
     prompt: "select_account",
   })
 );
