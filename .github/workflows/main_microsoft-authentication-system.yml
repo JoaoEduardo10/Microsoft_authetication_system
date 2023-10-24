@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'microsoft-authentication-system'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DA3D4016120A494987A833B9C0949798 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1299AAB4091647CCAFDCBF9FBCD8BEE6 }}
           package: .
