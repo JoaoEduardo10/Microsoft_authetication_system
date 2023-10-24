@@ -21,19 +21,21 @@ app.use(express.json());
 
 app.use(
   session({
-    resave: true,
+    resave: false,
     secret: process.env.SESSION_SECRET as string,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-      secure: true,
+      secure: false,
     },
-    name: "Microsoft",
+    name: "Microsoft-auth",
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/v1", router);
+const VERSION = process.env.VERSION || "/v0";
+
+app.use(VERSION, router);
 
 app.use(globalsErrors);
 

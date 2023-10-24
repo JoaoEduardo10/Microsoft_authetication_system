@@ -3,6 +3,7 @@ import { MongoDb } from "./database/MongoDb";
 import { cache } from "./database/cache";
 
 const PORT = process.env.PORT || 7000;
+const VERSION = process.env.VERSION || "/v0";
 
 const mongoDb = new MongoDb();
 
@@ -17,7 +18,7 @@ if (process.env.IS_TEST) {
     .then(() => {
       app.listen(PORT, () => {
         cache.connect();
-        console.log(`server running on: http://localhost:${PORT}`);
+        console.log(`server running on: http://localhost:${PORT}${VERSION}`);
       });
 
       console.log("conectado ao banco de dados MongoDb");
