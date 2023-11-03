@@ -20,7 +20,7 @@ class MicrosoftAuthentication {
           callbackURL: process.env.CALLBACK_URL || "",
           tenant: process.env.TENANT_ID || "",
         },
-        (accessToken: any, refreshToken: any, profile: any, done: any) => {
+        (_accessToken: any, _refreshToken: any, profile: any, done: any) => {
           return done(null, profile);
         }
       )

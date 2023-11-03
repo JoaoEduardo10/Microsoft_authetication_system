@@ -32,7 +32,6 @@ microsoftRouter.get(
   passport.authenticate("microsoft", {
     failureRedirect: `${VERSION}/auth/microsoft/failure`,
     successRedirect: `${VERSION}/auth/microsoft/users`,
-    scope: ["User.Read"],
   })
 );
 
@@ -52,7 +51,7 @@ microsoftRouter.get("auth/microsoft/failure", (_req, res) => {
 });
 
 microsoftRouter.get("/logout/:id", (req, res) => {
-  req.logout((message: any) => console.log(message));
+  req.logout(() => {});
   const { id } = req.params;
   cache.delete(id);
 

@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "jest --testTimeout 20000"
+    "test": "jest"
   },
   "author": "joão eduardo",
   "license": "ISC",
