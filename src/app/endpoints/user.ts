@@ -2,8 +2,8 @@ import { Router } from "express";
 import { GetUserAuthRouter } from "../usecase/user/user-auth";
 import { GetUserAuthMiddleware } from "../middlewares/user/user-auth";
 import { GetUserIdsRouter } from "../usecase/user/get-users-ids";
-import { UserTokenValidationRouter } from "../usecase/user/user-token-validation";
 import { authenticationMiddleware } from "../middlewares/authentication";
+import { GetUserRouter } from "../usecase/user/get-user";
 
 const userRouter = Router();
 
@@ -20,12 +20,6 @@ const getUserIdsRouter = new GetUserIdsRouter();
 
 userRouter.get("/users", getUserIdsRouter.get);
 
-const userTokenValidationRouter = new UserTokenValidationRouter();
-
-userRouter.post(
-  "/user/token/validation",
-  authenticationMiddleware,
-  userTokenValidationRouter.validate
-);
+userRouter.get("/user/:id", authenticationMiddleware, GetUserRouter.get);
 
 export { userRouter };
