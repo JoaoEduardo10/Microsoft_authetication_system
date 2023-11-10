@@ -27,6 +27,8 @@ A aplicação integra-se com o sistema de autenticação da Microsoft Azure.
 
 3. **test**
 
+OBS: TEST REMOVIDO, POR UM MOMENTO
+
 - contem os teste execiaus da aplicação
 
 **Observação**: Apenas a classe `CacheLocal` possui testes, pois o restante da aplicação é uma CLI de terceiros. Caso você faça alterações na `CacheLocal`, execute os testes para garantir que tudo esteja funcionando corretamente.
