@@ -15,7 +15,7 @@ export interface IjwtComplete {
 export const createJwt = (data: Ijwt) => {
   const jwtHash = process.env.HASH_JWT as string;
 
-  return jwt.sign(data, jwtHash, { expiresIn: "3h" });
+  return jwt.sign(data, jwtHash, { expiresIn: "24h" });
 };
 
 export const compareJwt = (
