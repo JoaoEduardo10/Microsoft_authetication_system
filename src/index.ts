@@ -14,6 +14,4 @@ if (process.env.IS_TEST) {
     cache.connect();
     console.log(`server running on: http://localhost:${PORT}${VERSION}`);
   });
-
-  console.log("conectado ao banco de dados MongoDb");
 }
