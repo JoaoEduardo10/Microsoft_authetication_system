@@ -57,6 +57,8 @@ const req: ApiRequest<unknown> = {
   },
 };
 
+const req_two: ApiRequest<unknown> = {};
+
 describe("get-user", () => {
   it("should get user for id", async () => {
     const repository = new MockGetUserRepository();
@@ -67,5 +69,23 @@ describe("get-user", () => {
 
     expect(body.id).toBeTruthy();
     expect(statusCode).toBe(200);
+  });
+
+  it("should not get user for id", async () => {
+    const repository = new MockGetUserRepository();
+
+    const controller = new GetUserController(repository);
+
+    try {
+      const { body } = await controller.handle(req_two);
+
+      expect(body.id).not.toBeTruthy();
+    } catch (error) {
+      expect(error).toBeTruthy();
+
+      expect((error as Error).message).toBe(
+        "Não foi possvel carrage o usuário"
+      );
+    }
   });
 });

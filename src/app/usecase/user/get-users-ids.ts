@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { CacheLocalGetAllUserIdsRepository } from "../../repositories/user/get-all-users-id/get-users-id";
-import { GetUserIdsController } from "../../controllers/user/get-users-ids";
+import { GetAllUserIdsController } from "../../controllers/user/get-all-users-ids";
 
 export class GetUserIdsRouter {
   async get(req: Request, res: Response) {
     const cacheLocalGetUserIdsRepository =
       new CacheLocalGetAllUserIdsRepository();
-    const getUserIdsController = new GetUserIdsController(
+    const getUserIdsController = new GetAllUserIdsController(
       cacheLocalGetUserIdsRepository
     );
 

@@ -2,13 +2,13 @@
 import { IGetAllUserIdsRepository } from "../../repositories/user/get-all-users-id/protocols";
 import { ApiRequest, ApiResponse, IController } from "../protocols";
 
-export class GetUserIdsController implements IController {
+export class GetAllUserIdsController implements IController {
   constructor(
-    private readonly getUserIdsRepository: IGetAllUserIdsRepository
+    private readonly getAllUserIdsRepository: IGetAllUserIdsRepository
   ) {}
 
   async handle(_req: ApiRequest<unknown>): Promise<ApiResponse<string[]>> {
-    const users = await this.getUserIdsRepository.get();
+    const users = await this.getAllUserIdsRepository.get();
 
     return {
       body: users,
