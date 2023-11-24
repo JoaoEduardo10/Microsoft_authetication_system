@@ -1,9 +1,9 @@
 import { createJwt } from "../../helpers/jsonwebtoken";
-import { IGetUserAuthRepositoty } from "../../repositories/user/user-auth/protocols";
+import { IGetUserRepository } from "../../repositories/user/get-user/protocols";
 import { ApiRequest, ApiResponse, IController } from "../protocols";
 
 class GetUserAuthController implements IController {
-  constructor(private readonly getUserAuthRepository: IGetUserAuthRepositoty) {}
+  constructor(private readonly getUserAuthRepository: IGetUserRepository) {}
 
   async handle(req: ApiRequest<unknown>): Promise<ApiResponse<string>> {
     const id = req.params.id as string;

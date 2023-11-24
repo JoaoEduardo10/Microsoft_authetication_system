@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
-import { CacheLocalGetUserAuthRepository } from "../../repositories/user/user-auth/get-user-auth";
+import { CacheLocalGetUserRepository } from "../../repositories/user/get-user/get-user";
 import { GetUserAuthController } from "../../controllers/user/user-auth";
 
 class GetUserAuthRouter {
   async get(req: Request, res: Response) {
-    const cacheLocalGetUserAuthRepository =
-      new CacheLocalGetUserAuthRepository();
+    const cacheLocalGetUserAuthRepository = new CacheLocalGetUserRepository();
     const cacheLocalGetUserAuthController = new GetUserAuthController(
       cacheLocalGetUserAuthRepository
     );
