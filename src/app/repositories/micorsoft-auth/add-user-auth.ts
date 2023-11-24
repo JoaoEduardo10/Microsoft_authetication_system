@@ -10,7 +10,7 @@ class CacheLocalAddUserAuthRepository implements IAddUserAuthRepository {
   }
 
   async add(user: UserDTO): Promise<void> {
-    this.cache.set(JSON.stringify(user), user.id);
+    this.cache.set({ key: JSON.stringify(user), valueId: user.id });
   }
 }
 
