@@ -2,7 +2,7 @@ import { createJwt } from "../../helpers/jsonwebtoken";
 import { IGetUserRepository } from "../../repositories/user/get-user/protocols";
 import { ApiRequest, ApiResponse, IController } from "../protocols";
 
-class GetUserAuthController implements IController {
+class GetTokenController implements IController {
   constructor(private readonly getUserAuthRepository: IGetUserRepository) {}
 
   async handle(req: ApiRequest<unknown>): Promise<ApiResponse<string>> {
@@ -26,4 +26,4 @@ class GetUserAuthController implements IController {
   }
 }
 
-export { GetUserAuthController };
+export { GetTokenController };
