@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IGetUserIdsRepository } from "../../repositories/user/get-users-id/protocols";
+import { IGetAllUserIdsRepository } from "../../repositories/user/get-all-users-id/protocols";
 import { ApiRequest, ApiResponse, IController } from "../protocols";
 
 export class GetUserIdsController implements IController {
-  constructor(private readonly getUserIdsRepository: IGetUserIdsRepository) {}
+  constructor(
+    private readonly getUserIdsRepository: IGetAllUserIdsRepository
+  ) {}
 
   async handle(_req: ApiRequest<unknown>): Promise<ApiResponse<string[]>> {
     const users = await this.getUserIdsRepository.get();

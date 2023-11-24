@@ -1,8 +1,10 @@
 import { cache } from "../../../../database/cache";
 import { Internal_Server_Error } from "../../../errors/api-errors";
-import { IGetUserIdsRepository } from "./protocols";
+import { IGetAllUserIdsRepository } from "./protocols";
 
-export class CacheLocalGetUserIdsRepository implements IGetUserIdsRepository {
+export class CacheLocalGetAllUserIdsRepository
+  implements IGetAllUserIdsRepository
+{
   private cache: typeof cache;
 
   constructor() {
