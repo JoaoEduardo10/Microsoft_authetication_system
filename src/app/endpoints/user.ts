@@ -1,25 +1,21 @@
 import { Router } from "express";
-import { GetUserAuthRouter } from "../usecase/user/user-auth";
-import { GetUserAuthMiddleware } from "../middlewares/user/user-auth";
-import { GetUserIdsRouter } from "../usecase/user/get-users-ids";
+import { GetTokenRouter } from "../usecase/user/get-token";
+import { GetTokenMiddleware } from "../middlewares/user/user-auth";
+import { GetAllUserIdsRouter } from "../usecase/user/get-all-users-ids";
 import { authenticationMiddleware } from "../middlewares/authentication";
 import { GetUserRouter } from "../usecase/user/get-user";
 
 const userRouter = Router();
 
-const getUserAuthRouter = new GetUserAuthRouter();
-const getUserAuthMiddleware = new GetUserAuthMiddleware();
+const getTokenRouter = new GetTokenRouter();
+const getTokenMiddleware = new GetTokenMiddleware();
 
-userRouter.get(
-  "/users/:id",
-  getUserAuthMiddleware.middleware,
-  getUserAuthRouter.get
-);
+userRouter.get("/token/:id", getTokenMiddleware.middleware, getTokenRouter.get);
 
-const getUserIdsRouter = new GetUserIdsRouter();
+const getAllUserIdsRouter = new GetAllUserIdsRouter();
 
-userRouter.get("/users", getUserIdsRouter.get);
+userRouter.get("/users", getAllUserIdsRouter.get);
 
-userRouter.get("/user/:id", authenticationMiddleware, GetUserRouter.get);
+userRouter.get("/users/:id", authenticationMiddleware, GetUserRouter.get);
 
 export { userRouter };
