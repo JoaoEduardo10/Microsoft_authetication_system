@@ -16,7 +16,9 @@ class CacheLocal {
     this.validateConnect = true;
   }
 
-  set(key: string, valueId: string): string {
+  set(params: CacheDTO): string {
+    const { key, valueId } = params;
+
     if (!this.validateConnect) {
       return "falha";
     }
