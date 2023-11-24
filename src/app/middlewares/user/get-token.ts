@@ -9,7 +9,7 @@ class GetTokenMiddleware {
     const user = cache.get(id);
 
     if (user == "falha") {
-      throw new Not_Fould("não autorizado");
+      throw new Not_Fould("rota invalida");
     }
 
     next();

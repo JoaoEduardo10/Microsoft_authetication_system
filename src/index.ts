@@ -8,6 +8,7 @@ if (process.env.IS_TEST) {
   import("../src/mock/server").then((module) => {
     const { server } = module;
     server.listen(1000, () => console.log("servidor de test rodando"));
+    console.log("aq");
   });
 } else {
   app.listen(PORT, () => {

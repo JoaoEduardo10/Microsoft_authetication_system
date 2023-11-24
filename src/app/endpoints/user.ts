@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { GetTokenRouter } from "../usecase/user/get-token";
-import { GetTokenMiddleware } from "../middlewares/user/user-auth";
+import { GetTokenMiddleware } from "../middlewares/user/get-token";
 import { GetAllUserIdsRouter } from "../usecase/user/get-all-users-ids";
 import { authenticationMiddleware } from "../middlewares/authentication";
 import { GetUserRouter } from "../usecase/user/get-user";

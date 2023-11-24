@@ -4,10 +4,12 @@ import { config } from "dotenv";
 import { globalsErrors } from "../../src/app/middlewares/globals-errors";
 import { userRouter } from "../../src/app/endpoints/user";
 
-export const server = express();
+const server = express();
 config();
 server.use(express.json());
 
 server.use(userRouter);
 
 server.use(globalsErrors);
+
+export { server };
