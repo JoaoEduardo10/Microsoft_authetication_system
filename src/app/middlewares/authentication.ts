@@ -26,7 +26,7 @@ export const authenticationMiddleware: RequestHandler = async (
     const token = compareJwt(token_auth);
 
     if (token == undefined) {
-      throw new Error("Não autorizado");
+      throw new Unauthorezid("Não autorizado");
     }
 
     req.headers.email = token.email as string;

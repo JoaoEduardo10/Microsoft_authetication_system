@@ -7,6 +7,7 @@ export default defineConfig({
     setupFiles: ["tests/setup.ts"],
     coverage: {
       provider: "v8",
+      exclude: ["src/app/errors", "src/app/middlewares/g*"],
     },
   },
 });
